@@ -63,8 +63,8 @@ def read_bigs_csv(filename):
         csv_reader = csv.reader(f, delimiter=",")
         next(csv_reader) # skip the header
         for row in csv_reader:
-            prefs[row[1]] = row[3:6]
-            capacities[row[1]] = int(row[2])
+            prefs[row[0]] = row[2:]
+            capacities[row[0]] = int(row[1])
     return prefs, capacities
 
 
@@ -74,7 +74,7 @@ def read_littles_csv(filename):
         csv_reader = csv.reader(f, delimiter=",")
         next(csv_reader) # skip the header
         for row in csv_reader:
-            prefs[row[1]] = row[2:5]
+            prefs[row[0]] = row[1:]
     return prefs
 
 
@@ -102,7 +102,7 @@ def main(bigs_filename: str, littles_filename: str):
     for big, littles in matches.items():
         littles_str = ", ".join(littles)
         print(f"\x1B[1m{big}\x1B[0m - {littles_str}")
-    print() 
+    print()
 
 
 if __name__ == "__main__":
